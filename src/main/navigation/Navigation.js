@@ -6,6 +6,7 @@ import Slider from "./Slider";
 class Navigation extends React.Component {
 	state = {
 	  genre: 'comedy',
+	  genres: [],
 	  year: {
 	  	label: "year",
 	  	min: 1990,
@@ -28,6 +29,17 @@ class Navigation extends React.Component {
 	  	value: { min: 60, max: 120 }
 	  }
 	};
+
+	componentDidMount() {
+	  const genreURL = `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`	
+	  fetch(genreURL)
+	  	.then(response => response.json())
+	  	.then(data => this.setState({genres: data.genres}))
+	  	.catch(error => console.log(error));	
+	}
+
+
+
 
 	onChange = data => {
 		this.setState({
