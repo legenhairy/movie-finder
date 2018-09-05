@@ -39,8 +39,6 @@ class Navigation extends React.Component {
 	}
 
 
-
-
 	onChange = data => {
 		this.setState({
 		  [data.type]: {
@@ -58,6 +56,7 @@ class Navigation extends React.Component {
 		return(
 			<section className="navigation">
 			  <Selection
+			   	 genres={this.state.genres}
 			   	 genre={this.state.genre}
 			   	 onGenreChange={this.onGenreChange}
 			  />
