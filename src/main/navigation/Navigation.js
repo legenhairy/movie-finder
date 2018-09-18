@@ -14,7 +14,7 @@ class Navigation extends React.Component {
 	}
 
 	render() {
-		const { genre, genres, onGenreChange, onChange, year, rating, runtime } = this.props;
+		const { genre, genres, onGenreChange, onChange, year, rating, runtime, onSearchButtonClick } = this.props;
 		return(
 			<section className="navigation">
 			  <Selection
@@ -27,7 +27,7 @@ class Navigation extends React.Component {
 			  <Slider data={rating} onChange = {onChange}/>
 			  <Slider data={runtime} onChange = {onChange}/>	
 
-			  <SearchButton />
+			  <SearchButton onClick={onSearchButtonClick}/>
 			</section>
 		)
 	}
