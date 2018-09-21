@@ -32,6 +32,8 @@ class Main extends React.Component {
 	  }
 	};
 
+	/**recieves an object with type and value properties*/
+	/*data.type says what part of state should be updated*/
 	onChange = (data) => {
 		this.setState({
 		  [data.type]: {
