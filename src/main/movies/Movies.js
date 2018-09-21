@@ -15,6 +15,7 @@ class Movies extends React.Component {
 	  this.fetchMovies(this.props.url);	
 	}
 
+	/**refetch a new url based on user choices, uses this lifecycl method to compare props*/
 	componentWillReceiveProps(nextProps) {
 	  if(this.props.url !== nextProps.url) {
 	  	this.fetchMovies(nextProps.url);
