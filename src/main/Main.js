@@ -6,6 +6,7 @@ import Movies from "./movies/Movies";
 class Main extends React.Component {
 	state = {
 	  movies: [],
+	  total_pages: 1,
 	  page: 1,
 	  url: `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`,
 	  moviesUrl:`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1`,
@@ -83,14 +84,14 @@ class Main extends React.Component {
       	`with_runtime.lte=${runtime.value.max}&` +
       	`page=${page}`;
 
-       this.setState({ moviesUrl });	
+       this.setState({ movies, total_pages: data.total_pages });	
 	}
 
 	onSearchButtonClick = () => {
 	  this.generateUrl();	
 	}
 
-
+	
 	fetchMovies = (url) => {
 	  fetch(url)
 		  .then(response => response.json())
@@ -107,8 +108,8 @@ class Main extends React.Component {
 		  		} = result;	
 	      return { vote_count, id, genre_ids, poster_path, title, vote_average, release_date};
 		});
-		
-		this.setState({movies});
+		/*we get total_pages as part of the data object from the api*/
+		this.setState({movies, total_pages: data.total_pages});
 	}
 
 
