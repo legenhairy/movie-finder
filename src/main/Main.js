@@ -34,6 +34,19 @@ class Main extends React.Component {
 	  }
 	};
 
+	componentDidMount() {
+	  this.fetchMovies(this.state.moviesUrl);	
+	}
+
+	/*when the url changes from clicking the search button*/
+	/*this is where to refetch the movie data if moviesUrl is different than previous one*/
+	componentWillUpdate(nextProps, nextState) {
+	  if (this.state.moviesUrl !== nextState.moviesUrl)	{
+	  	this.fetchMovies(nextState.moviesUrl)
+	  }
+	}
+
+
 	/**recieves an object with type and value properties*/
 	/*data.type says what part of state should be updated*/
 	onChange = (data) => {
@@ -77,7 +90,7 @@ class Main extends React.Component {
 	  this.generateUrl();	
 	}
 
-	
+
 	fetchMovies = (url) => {
 	  fetch(url)
 		  .then(response => response.json())
@@ -97,7 +110,7 @@ class Main extends React.Component {
 		
 		this.setState({movies});
 	}
-	
+
 
 	render() {
 	  return (
@@ -108,7 +121,7 @@ class Main extends React.Component {
 	  		  setGenres={this.setGenres}
 	  		  onSearchButtonClick={this.onSearchButtonClick}
 	  		  {...this.state} />
-	  		<Movies url={this.state.moviesUrl} />
+	  		<Movies movies={this.state.movies} />
 	  	</section>
 	  )
 	}
