@@ -22,27 +22,6 @@ class Movies extends React.Component {
 	  }
 	}
 
-	fetchMovies = (url) => {
-	  fetch(url)
-		  .then(response => response.json())
-		  .then(data => this.storeMovies(data))
-		  .catch(error => console.log(error))
-	}
-
-
-	storeMovies = data => {
-		const movies = data.results.map(result => {
-		  const { vote_count, id, genre_ids, poster_path, title, 
-		  		vote_average, 
-		  		release_date
-		  		} = result;	
-	      return { vote_count, id, genre_ids, poster_path, title, vote_average, release_date};
-		});
-		
-		this.setState({movies});
-	}
-
-
 	render() {
 		return(
 			<section className="movies">
