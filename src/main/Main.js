@@ -84,7 +84,7 @@ class Main extends React.Component {
       	`with_runtime.lte=${runtime.value.max}&` +
       	`page=${page}`;
 
-       this.setState({ movies, total_pages: data.total_pages });	
+       this.setState({ moviesUrl });	
 	}
 
 	onSearchButtonClick = () => {
