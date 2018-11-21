@@ -121,7 +121,8 @@ class Main extends React.Component {
 	  		  onGenreChange={this.onGenreChange}
 	  		  setGenres={this.setGenres}
 	  		  onSearchButtonClick={this.onSearchButtonClick}
-	  		  {...this.state} />
+	  		  {...this.state} 
+	  		/>
 	  		<Movies movies={this.state.movies} />
 	  	</section>
 	  )

@@ -6,11 +6,17 @@ import SearchButton from './SearchButton';
 
 class Navigation extends React.Component {
 	
+	state = {
+	  genre: "Comedy",
+	  genres: []	
+	}
+
 	componentDidMount() {
-	  fetch(this.props.url)
-	  	.then(response => response.json())
-	  	.then(data => this.props.setGenres(data.genres))
-	  	.catch(error => console.log(error));	
+	  const genresURL = `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
+  	  fetch(genresURL)
+    	.then(response => response.json())
+    	.then(data => this.setState({genres: data.genres }))
+    	.catch(error => console.log(error));
 	}
 
 	render() {
@@ -18,9 +24,9 @@ class Navigation extends React.Component {
 		return(
 			<section className="navigation">
 			  <Selection
-			   	 genres={genres}
-			   	 genre={genre}
-			   	 onGenreChange={onGenreChange}
+			   	 genres={this.state.genres}
+			   	 genre={this.state.genre}
+			   	 onGenreChange={this.onGenreChange}
 			  />
 			
 			  <Slider data={year} onChange = {onChange}/>	
