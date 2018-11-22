@@ -5,7 +5,6 @@ import Movies from "./movies/Movies";
 
 class Main extends React.Component {
 	state = {
-	  movies: [],
 	  total_pages: 1,
 	  page: 1,
 	  url: `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`,
@@ -34,11 +33,13 @@ class Main extends React.Component {
 	  	value: { min: 60, max: 120 }
 	  }
 	};
-
+	
+	/*
 	componentDidMount() {
 	  this.fetchMovies(this.state.moviesUrl);	
 	}
-
+	*/
+	
 	/*when the url changes from clicking the search button*/
 	/*this is where to refetch the movie data if moviesUrl is different than previous one*/
 	componentWillUpdate(nextProps, nextState) {
@@ -90,28 +91,6 @@ class Main extends React.Component {
 	onSearchButtonClick = () => {
 	  this.generateUrl();	
 	}
-
-	
-	fetchMovies = (url) => {
-	  fetch(url)
-		  .then(response => response.json())
-		  .then(data => this.storeMovies(data))
-		  .catch(error => console.log(error))
-	}
-
-
-	storeMovies = data => {
-		const movies = data.results.map(result => {
-		  const { vote_count, id, genre_ids, poster_path, title, 
-		  		vote_average, 
-		  		release_date
-		  		} = result;	
-	      return { vote_count, id, genre_ids, poster_path, title, vote_average, release_date};
-		});
-		/*we get total_pages as part of the data object from the api*/
-		this.setState({movies, total_pages: data.total_pages});
-	}
-
 
 	render() {
 	  return (
