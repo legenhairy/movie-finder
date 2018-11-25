@@ -31,13 +31,13 @@ class Movies extends Component {
 
   render() {
   	return (
-	<section>
-  	   <ul className="movies">
-  	  	  {this.state.movies.map((movie,index) => (
-  	  		<MovieListItem key = {movie.id} movie={movie} />
-	  	   ))}	
-  	   </ul>
-  	</section>	
+	    <section>
+  	    <ul className="movies">
+  	  	   {this.state.movies.map((movie,index) => (
+  	  		   <MovieListItem key = {movie.id} movie={movie} />
+	  	     ))}	
+  	    </ul>
+  	  </section>	
  	);
   }
 }
