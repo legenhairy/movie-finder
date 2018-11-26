@@ -26,7 +26,7 @@ class Navigation extends React.Component {
 			  <Slider data={rating} onChange = {onChange}/>
 			  <Slider data={runtime} onChange = {onChange}/>	
 
-			  <SearchButton onClick={onSearchButtonClick}/>
+			  <SearchButton onClick={this.props.onSearchButtonClick}/>
 			</section>
 		)
 	}

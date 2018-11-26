@@ -4,7 +4,7 @@
 }
 
 .search-button button {
-	padding: 10px 21px;
+	padding: 10px 20px;
 	background: #e27a3f; /**needed to be able to see the button*/
 	font-size: 1em;
 	cursor: pointer;

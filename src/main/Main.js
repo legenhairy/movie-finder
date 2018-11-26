@@ -88,6 +88,7 @@ class Main extends React.Component {
        this.setState({ moviesUrl });	
 	}
 
+	/*when we click on search button, we want to create a new movie api to grab from*/
 	onSearchButtonClick = () => {
 	  this.generateUrl();	
 	}
