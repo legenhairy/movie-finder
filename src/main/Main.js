@@ -34,17 +34,6 @@ class Main extends React.Component {
 	  }
 	};
 	
-	
-	
-	
-	
-	/*when the url changes from clicking the search button*/
-	/*this is where to refetch the movie data if moviesUrl is different than previous one*/
-	componentWillUpdate(nextProps, nextState) {
-	  if (this.state.moviesUrl !== nextState.moviesUrl)	{
-	  	this.fetchMovies(nextState.moviesUrl)
-	  }
-	}
 
 
 	/**recieves an object with type and value properties*/
@@ -66,6 +55,7 @@ class Main extends React.Component {
 		this.setState({ genre: event.target.value });
 	}
 
+	/*to generate the new url, we need to grab year, rating, and runtime ranges, and genreId*/
 	generateUrl = () => {
 	  const {genres, year, rating, runtime, page } = this.state;
 	  const selectedGenre = genres.find(genre => genre.name === this.state.genre);
