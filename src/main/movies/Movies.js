@@ -8,11 +8,21 @@ class Movies extends Component {
   }
 
   componentDidMount() {
-  	const apiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=651925d45022d1ae658063b443c99784&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1`
-  	fetch(apiUrl)
-  	  .then(response => response.json())
-  	  .then(data => this.storeMovies(data))
-  	  .then(error => console.log(error))
+    this.fetchMovies(this.props.url); 
+  }
+
+  /*when we get a new movie url, we will fetch those new movies with the criteria*/
+  componentWillReceiveProps(nextProps) {
+    if (this.props.url !== nextProps.url) {
+      this.fetchMovies(nextProps.url);
+    }
+  }
+
+  fetchMovies = (url) => {
+    fetch(url)
+      .then(response => response.json())
+      .then(data => this.storeMovies(data))
+      .catch(error => console.log(error));
   }
 
   storeMovies = data => {

@@ -34,11 +34,9 @@ class Main extends React.Component {
 	  }
 	};
 	
-	/*
-	componentDidMount() {
-	  this.fetchMovies(this.state.moviesUrl);	
-	}
-	*/
+	
+	
+	
 	
 	/*when the url changes from clicking the search button*/
 	/*this is where to refetch the movie data if moviesUrl is different than previous one*/
@@ -103,7 +101,7 @@ class Main extends React.Component {
 	  		  onSearchButtonClick={this.onSearchButtonClick}
 	  		  {...this.state} 
 	  		/>
-	  		<Movies />
+	  		<Movies url={this.state.moviesUrl}/>
 	  	</section>
 	  )
 	}
