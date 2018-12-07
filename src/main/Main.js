@@ -128,7 +128,7 @@ class Main extends React.Component {
 	}	
 
 	onPageDecrease = () => {
-	  const nextPage = page - 1;
+	  const nextPage = this.state.page - 1;
 	  if (nextPage > 0) {
 	  	this.setState({ page: nextPage })
 	  }	
@@ -146,7 +146,12 @@ class Main extends React.Component {
 	  		  onSearchButtonClick={this.onSearchButtonClick}
 	  		  {...this.state} 
 	  		/>
-	  		<Movies movies={this.state.movies}/>
+	  		<Movies 
+	  		  movies={this.state.movies}
+	  		  page={this.state.page}
+	  		  onPageIncrease={this.onPageIncrease}
+	  		  onPageDecrease={this.onPageDecrease}
+	  		  />
 	  	</section>
 	  )
 	}
