@@ -5,6 +5,7 @@ import Movies from "./movies/Movies";
 
 class Main extends React.Component {
 	state = {
+	  movies: [],
 	  total_pages: 1,
 	  page: 1,
 	  url: `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`,
@@ -34,6 +35,39 @@ class Main extends React.Component {
 	  }
 	};
 	
+	/*to change the page value, we now fetch movies in main component*/
+	componentDidMount() {
+	  this.fetchMovies(this.state.moviesUrl);	
+	}
+
+	componentWillUpdate(nextProps, nextState) {
+	  if (this.state.moviesUrl !== nextState.moviesUrl) {
+	  	this.fetchMovies(nextState.moviesUrl);
+	  }	
+	}
+
+	fetchMovies = (url) => {
+      fetch(url)
+        .then(response => response.json())
+        .then(data => this.storeMovies(data))
+        .catch(error => console.log(error));
+ 	}
+	
+ 	storeMovies = data => {
+ 	  const movies = data.results.map(result => {
+ 	  	const {
+ 	  	  vote_count,
+ 	  	  id,
+ 	  	  genre_ids,
+ 	  	  poster_path,
+ 	  	  title,
+ 	  	  vote_average,
+ 	  	  release_date	
+ 	  	} = result;
+ 	  	return { vote_count, id, genre_ids, poster_path, title, vote_average, release_date };
+ 	  });
+ 	  this.setState({ movies, total_pages: data.total_pages });		
+ 	}
 
 
 	/**recieves an object with type and value properties*/
@@ -91,7 +125,7 @@ class Main extends React.Component {
 	  		  onSearchButtonClick={this.onSearchButtonClick}
 	  		  {...this.state} 
 	  		/>
-	  		<Movies url={this.state.moviesUrl}/>
+	  		<Movies movies={this.state.movies}/>
 	  	</section>
 	  )
 	}
