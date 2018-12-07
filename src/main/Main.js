@@ -44,6 +44,9 @@ class Main extends React.Component {
 	  if (this.state.moviesUrl !== nextState.moviesUrl) {
 	  	this.fetchMovies(nextState.moviesUrl);
 	  }	
+	  if (this.state.page !== nextState.page) {
+	  	this.generateUrl();
+	  }
 	}
 
 	fetchMovies = (url) => {
@@ -114,6 +117,24 @@ class Main extends React.Component {
 	onSearchButtonClick = () => {
 	  this.generateUrl();	
 	}
+
+	/*update page value only if next page exists*/
+	onPageIncrease = () => {
+	  const { page, total_pages } = this.state;	
+	  const nextPage = page + 1;
+	  if(nextPage <= total_pages) {
+	  	this.setState({ page: nextPage })
+	  }	
+	}	
+
+	onPageDecrease = () => {
+	  const nextPage = page - 1;
+	  if (nextPage > 0) {
+	  	this.setState({ page: nextPage })
+	  }	
+	}
+
+
 
 	render() {
 	  return (
